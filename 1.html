@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>یک سؤال مهم ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at top left, #ffd6e7 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #d8d7ff 0%, transparent 35%),
+                linear-gradient(135deg, #fff0f5, #eeeaff);
+
+            overflow: hidden;
+        }
+
+        /* کارت اصلی */
+        .card {
+            width: min(90%, 480px);
+            min-height: 330px;
+
+            padding: 45px 30px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+
+            box-shadow: 0 20px 60px rgba(80, 50, 100, 0.15);
+
+            animation: cardShow 0.8s ease;
+        }
+
+        /* قلب بالای سؤال */
+        .heart {
+            font-size: 55px;
+            margin-bottom: 15px;
+
+            animation: heartbeat 1.5s infinite;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 35px;
+        }
+
+        /* محل دکمه ها */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+
+            min-height: 60px;
+
+            direction: ltr;
+        }
+
+        button {
+            border: none;
+            outline: none;
+
+            padding: 15px 35px;
+
+            border-radius: 15px;
+
+            font-size: 17px;
+            font-family: inherit;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        /* دکمه آره */
+        #yesBtn {
+            color: white;
+            background: linear-gradient(135deg, #ff4f81, #ff2f68);
+
+            box-shadow: 0 8px 20px rgba(255, 47, 104, 0.25);
+        }
+
+        #yesBtn:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 25px rgba(255, 47, 104, 0.35);
+        }
+
+        /* دکمه نه */
+        #noBtn {
+            color: #555;
+            background: white;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        #noBtn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* پیام بعد از انتخاب آره */
+        .success {
+            display: none;
+
+            text-align: center;
+
+            animation: successShow 0.8s ease;
+        }
+
+        .success .big-heart {
+            font-size: 75px;
+            margin-bottom: 20px;
+        }
+
+        .success h2 {
+            font-size: 30px;
+            color: #ff3971;
+            margin-bottom: 15px;
+        }
+
+        .success p {
+            font-size: 17px;
+            color: #666;
+        }
+
+        /* انیمیشن ها */
+
+        @keyframes cardShow {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+        @keyframes successShow {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* موبایل */
+        @media (max-width: 500px) {
+
+            .card {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .buttons {
+                gap: 12px;
+            }
+
+            button {
+                padding: 13px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- صفحه سؤال -->
+    <div class="card" id="questionCard">
+
+        <div class="heart">💗</div>
+
+        <h1>با من دوست میشی؟ 🥺</h1>
+
+        <p class="subtitle">
+            یه سؤال خیلی مهم دارم ازت...
+        </p>
+
+        <div class="buttons">
+
+            <button id="yesBtn" onclick="sayYes()">
+                آره ❤️
+            </button>
+
+            <button id="noBtn" onclick="sayNo()">
+                نه 😐
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- صفحه بعد از زدن آره -->
+    <div class="card success" id="successCard">
+
+        <div class="big-heart">
+            🥹❤️
+        </div>
+
+        <h2>ممنون بابت انتخابت! 💕</h2>
+
+        <p>
+            خوشحالم که گفتی آره 😄🌸
+        </p>
+
+    </div>
+
+
+    <script>
+
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+
+        let noClicks = 0;
+
+        function sayNo() {
+
+            noClicks++;
+
+            if (noClicks === 1) {
+
+                // مرحله اول
+                noBtn.style.transform = "scale(0.78)";
+
+            } 
+            else if (noClicks === 2) {
+
+                // مرحله دوم
+                noBtn.style.transform = "scale(0.55)";
+
+            } 
+            else if (noClicks === 3) {
+
+                // مرحله سوم
+                noBtn.style.transform = "scale(0.30)";
+
+            } 
+            else if (noClicks >= 4) {
+
+                // مرحله آخر - محو شدن
+                noBtn.style.transform = "scale(0)";
+                noBtn.style.opacity = "0";
+                noBtn.style.pointerEvents = "none";
+            }
+        }
+
+
+        function sayYes() {
+
+            const questionCard = document.getElementById("questionCard");
+            const successCard = document.getElementById("successCard");
+
+            // کارت سؤال محو می شود
+            questionCard.style.transition = "0.6s ease";
+            questionCard.style.opacity = "0";
+            questionCard.style.transform = "scale(0.8)";
+
+            setTimeout(() => {
+
+                questionCard.style.display = "none";
+
+                // صفحه موفقیت نمایش داده می شود
+                successCard.style.display = "flex";
+
+            }, 600);
+        }
+
+    </script>
+
+</body>
+</html>
